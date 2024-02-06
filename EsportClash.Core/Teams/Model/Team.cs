@@ -8,6 +8,7 @@ public class Team : BaseEntity {
 
   public ICollection<TeamMember> Members = new List<TeamMember>();
 
+
   /**
    * Allows a Player to join the team.
    * If the role is already taken, the player can't join the team with this role.
