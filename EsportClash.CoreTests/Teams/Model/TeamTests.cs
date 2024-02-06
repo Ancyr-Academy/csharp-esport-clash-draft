@@ -4,7 +4,7 @@ using EsportClash.Core.Teams.Model;
 namespace EsportClash.CoreTests.Teams.Model;
 
 public class TeamTests {
-  public Player createPlayer(string name, Role role) {
+  private Player CreatePlayer(string name, Role role) {
     return new Player {
       Id = name,
       Name = name,
@@ -12,7 +12,7 @@ public class TeamTests {
     };
   }
 
-  public Team createTeam() {
+  private Team CreateTeam() {
     return new Team {
       Id = "team",
       Name = "team"
@@ -20,8 +20,8 @@ public class TeamTests {
   }
   [Test]
   public void PlayerShouldJoinTeam() {
-    var player = createPlayer("player", Role.Middle);
-    var team = createTeam();
+    var player = CreatePlayer("player", Role.Middle);
+    var team = CreateTeam();
 
     team.Join(player, Role.Middle);
     
@@ -31,19 +31,19 @@ public class TeamTests {
   
   [Test]
   public void WhenRoleIsAlreadyTaken_ShouldNotAddToTheTeam() {
-    var mid1 = createPlayer("Mid1", Role.Middle);
-    var mid2  = createPlayer("Mid2", Role.Middle);
-    var team = createTeam();
+    var mid1 = CreatePlayer("Mid1", Role.Middle);
+    var mid2  = CreatePlayer("Mid2", Role.Middle);
+    var team = CreateTeam();
 
     team.Join(mid1, Role.Middle);
     var exception = Assert.Throws<InvalidOperationException>(() => team.Join(mid2, Role.Middle));
-    Assert.That(exception.Message, Is.EqualTo("Role is already taken"));
+    Assert.That(exception!.Message, Is.EqualTo("Role is already taken"));
   }
  
   [Test]
   public void WhenPlayerAlreadyHasRole_ShouldBeIdempotent() {
-    var mid1 = createPlayer("Mid1", Role.Middle);
-    var team = createTeam();
+    var mid1 = CreatePlayer("Mid1", Role.Middle);
+    var team = CreateTeam();
 
     team.Join(mid1, Role.Middle);
     team.Join(mid1, Role.Middle);
@@ -54,22 +54,22 @@ public class TeamTests {
 
   [Test]
   public void WhenPlayerIsAlreadyInTeam_houldNotAddToTheTeam() {
-    var mid = createPlayer("Mid", Role.Middle);
-    var team = createTeam();
+    var mid = CreatePlayer("Mid", Role.Middle);
+    var team = CreateTeam();
 
     team.Join(mid, Role.Middle);
     var exception = Assert.Throws<InvalidOperationException>(() => team.Join(mid, Role.Top));
-    Assert.That(exception.Message, Is.EqualTo("Player is already in team"));
+    Assert.That(exception!.Message, Is.EqualTo("Player is already in team"));
   }
 
   [Test]
   public void WhenAddingFivePlayers_ShouldBeComplete() {
-    var top = createPlayer("Top", Role.Top);
-    var jungle = createPlayer("Jungle", Role.Jungle);
-    var mid = createPlayer("Mid", Role.Middle);
-    var bottom = createPlayer("Bottom", Role.Bottom);
-    var support = createPlayer("Support", Role.Support);
-    var team = createTeam();
+    var top = CreatePlayer("Top", Role.Top);
+    var jungle = CreatePlayer("Jungle", Role.Jungle);
+    var mid = CreatePlayer("Mid", Role.Middle);
+    var bottom = CreatePlayer("Bottom", Role.Bottom);
+    var support = CreatePlayer("Support", Role.Support);
+    var team = CreateTeam();
 
       
     team.Join(top, Role.Top);
@@ -83,8 +83,8 @@ public class TeamTests {
   
   [Test]
   public void PlayerShouldLeaveTeam() {
-    var player = createPlayer("player", Role.Middle);
-    var team = createTeam();
+    var player = CreatePlayer("player", Role.Middle);
+    var team = CreateTeam();
 
     team.Join(player, Role.Middle);
     team.Leave(player);
