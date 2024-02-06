@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClashAPI", "EsportClashAPI\EsportClashAPI.csproj", "{6A63F619-597E-41B6-9B77-3814CC042D5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.Core", "EsportClash.Core\EsportClash.Core.csproj", "{B27260FD-078A-4056-A4C9-60049583612B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.CoreTests", "EsportClash.CoreTests\EsportClash.CoreTests.csproj", "{B530AFB6-D4D7-4DB0-9948-654D7A57F8C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.Persistence.InMemory", "EsportClash.Persistence.InMemory\EsportClash.Persistence.InMemory.csproj", "{27A32515-73BC-4562-8F6A-A8142548AD6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.Persistence.SQL", "EsportClash.Persistence.SQL\EsportClash.Persistence.SQL.csproj", "{CC5F208D-D6DB-4AD7-AA3C-41DDF2DF8FF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.Persistence.SQL.Tests", "EsportClash.Persistence.SQL.Tests\EsportClash.Persistence.SQL.Tests.csproj", "{C1FEE9E0-31F1-4901-821F-C9BAE3A5C270}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A63F619-597E-41B6-9B77-3814CC042D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A63F619-597E-41B6-9B77-3814CC042D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A63F619-597E-41B6-9B77-3814CC042D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A63F619-597E-41B6-9B77-3814CC042D5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B27260FD-078A-4056-A4C9-60049583612B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B27260FD-078A-4056-A4C9-60049583612B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B27260FD-078A-4056-A4C9-60049583612B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B27260FD-078A-4056-A4C9-60049583612B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B530AFB6-D4D7-4DB0-9948-654D7A57F8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B530AFB6-D4D7-4DB0-9948-654D7A57F8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B530AFB6-D4D7-4DB0-9948-654D7A57F8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B530AFB6-D4D7-4DB0-9948-654D7A57F8C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27A32515-73BC-4562-8F6A-A8142548AD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A32515-73BC-4562-8F6A-A8142548AD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A32515-73BC-4562-8F6A-A8142548AD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A32515-73BC-4562-8F6A-A8142548AD6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5F208D-D6DB-4AD7-AA3C-41DDF2DF8FF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5F208D-D6DB-4AD7-AA3C-41DDF2DF8FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5F208D-D6DB-4AD7-AA3C-41DDF2DF8FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5F208D-D6DB-4AD7-AA3C-41DDF2DF8FF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1FEE9E0-31F1-4901-821F-C9BAE3A5C270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1FEE9E0-31F1-4901-821F-C9BAE3A5C270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1FEE9E0-31F1-4901-821F-C9BAE3A5C270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1FEE9E0-31F1-4901-821F-C9BAE3A5C270}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
