@@ -27,7 +27,7 @@ public class SmokeTests {
     var player = new Player {
       Id = "faker",
       Name = "Faker",
-      MainRole = Role.Mid,
+      MainRole = Role.Middle,
     };
 
     await _playerRepository.CreateAsync(player);
@@ -41,7 +41,7 @@ public class SmokeTests {
     var player = new Player {
       Id = "faker",
       Name = "Faker",
-      MainRole = Role.Mid,
+      MainRole = Role.Middle,
     };
     
     await _playerRepository.CreateAsync(player);
@@ -51,7 +51,7 @@ public class SmokeTests {
       Name = "SKT"
     };
     
-    skt.Join(player, Role.Mid);
+    skt.Join(player, Role.Middle);
 
     await _teamRepository.CreateAsync(skt);
 

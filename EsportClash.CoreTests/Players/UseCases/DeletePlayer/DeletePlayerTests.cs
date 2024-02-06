@@ -9,7 +9,7 @@ public class DeletePlayerTests {
   private readonly Player _faker = new Player {
     Id = "1",
     Name = "Faker",
-    MainRole = Role.Mid
+    MainRole = Role.Middle
   };
   
   private readonly InMemoryPlayerRepository _playerRepository = new InMemoryPlayerRepository();

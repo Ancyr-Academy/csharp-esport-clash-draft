@@ -9,7 +9,7 @@ public class GetPlayerByIdTests {
   private readonly Player _faker = new Player {
     Id = "1",
     Name = "Faker",
-    MainRole = Role.Mid
+    MainRole = Role.Middle
   };
   
   private readonly InMemoryPlayerRepository _playerRepository = new InMemoryPlayerRepository();
@@ -36,7 +36,7 @@ public class GetPlayerByIdTests {
     Assert.NotNull(result);
     Assert.That(result.Id, Is.EqualTo("1"));
     Assert.That(result.Name, Is.EqualTo("Faker"));
-    Assert.That(result.Role, Is.EqualTo("Mid"));
+    Assert.That(result.Role, Is.EqualTo("Middle"));
   }
   
   [Test]

@@ -22,8 +22,4 @@
       <ProjectReference Include="..\EsportClash.Persistence.InMemory\EsportClash.Persistence.InMemory.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Teams\Model\" />
-    </ItemGroup>
-
 </Project>

@@ -1,0 +1,94 @@
+using EsportClash.Core.Players.Model;
+using EsportClash.Core.Teams.Model;
+
+namespace EsportClash.CoreTests.Teams.Model;
+
+public class TeamTests {
+  public Player createPlayer(string name, Role role) {
+    return new Player {
+      Id = name,
+      Name = name,
+      MainRole = role
+    };
+  }
+
+  public Team createTeam() {
+    return new Team {
+      Id = "team",
+      Name = "team"
+    };
+  }
+  [Test]
+  public void PlayerShouldJoinTeam() {
+    var player = createPlayer("player", Role.Middle);
+    var team = createTeam();
+
+    team.Join(player, Role.Middle);
+    
+    Assert.That(team.HasPlayer(player), Is.True);
+    Assert.That(team.IsComplete(), Is.False);
+  }
+  
+  [Test]
+  public void WhenRoleIsAlreadyTaken_ShouldNotAddToTheTeam() {
+    var mid1 = createPlayer("Mid1", Role.Middle);
+    var mid2  = createPlayer("Mid2", Role.Middle);
+    var team = createTeam();
+
+    team.Join(mid1, Role.Middle);
+    var exception = Assert.Throws<InvalidOperationException>(() => team.Join(mid2, Role.Middle));
+    Assert.That(exception.Message, Is.EqualTo("Role is already taken"));
+  }
+ 
+  [Test]
+  public void WhenPlayerAlreadyHasRole_ShouldBeIdempotent() {
+    var mid1 = createPlayer("Mid1", Role.Middle);
+    var team = createTeam();
+
+    team.Join(mid1, Role.Middle);
+    team.Join(mid1, Role.Middle);
+    
+    Assert.That(team.HasPlayer(mid1), Is.True);
+    Assert.That(team.MembersCount(), Is.EqualTo(1));
+  }
+
+  [Test]
+  public void WhenPlayerIsAlreadyInTeam_houldNotAddToTheTeam() {
+    var mid = createPlayer("Mid", Role.Middle);
+    var team = createTeam();
+
+    team.Join(mid, Role.Middle);
+    var exception = Assert.Throws<InvalidOperationException>(() => team.Join(mid, Role.Top));
+    Assert.That(exception.Message, Is.EqualTo("Player is already in team"));
+  }
+
+  [Test]
+  public void WhenAddingFivePlayers_ShouldBeComplete() {
+    var top = createPlayer("Top", Role.Top);
+    var jungle = createPlayer("Jungle", Role.Jungle);
+    var mid = createPlayer("Mid", Role.Middle);
+    var bottom = createPlayer("Bottom", Role.Bottom);
+    var support = createPlayer("Support", Role.Support);
+    var team = createTeam();
+
+      
+    team.Join(top, Role.Top);
+    team.Join(jungle, Role.Jungle);
+    team.Join(mid, Role.Middle);
+    team.Join(bottom, Role.Bottom);
+    team.Join(support, Role.Support);
+    
+    Assert.That(team.IsComplete(), Is.True);
+  }
+  
+  [Test]
+  public void PlayerShouldLeaveTeam() {
+    var player = createPlayer("player", Role.Middle);
+    var team = createTeam();
+
+    team.Join(player, Role.Middle);
+    team.Leave(player);
+    
+    Assert.That(team.HasPlayer(player), Is.False);
+  }
+}

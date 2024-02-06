@@ -10,7 +10,7 @@ public class GetAllPlayerTests {
   private readonly Player _faker = new Player {
     Id = "1",
     Name = "Faker",
-    MainRole = Role.Mid
+    MainRole = Role.Middle
   };
   
   private readonly InMemoryPlayerRepository _playerRepository = new InMemoryPlayerRepository();
@@ -35,7 +35,7 @@ public class GetAllPlayerTests {
     Assert.That(result.Count, Is.EqualTo(1));
     Assert.That(result[0].Id, Is.EqualTo("1"));
     Assert.That(result[0].Name, Is.EqualTo("Faker"));
-    Assert.That(result[0].Role, Is.EqualTo("Mid"));
+    Assert.That(result[0].Role, Is.EqualTo("Middle"));
   }
 
 }

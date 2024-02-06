@@ -22,7 +22,7 @@ public class CreatePlayerTests {
   public async Task HappyPath_ShouldReturnId() {
     var inputDto = new CreatePlayerCommand {
       Name = "Faker",
-      MainRole = Role.Mid
+      MainRole = Role.Middle
     };
     
     var useCase = CreateUseCase();
@@ -35,7 +35,7 @@ public class CreatePlayerTests {
   public async Task HappyPath_ShouldStoreUser() {
     var inputDto = new CreatePlayerCommand {
       Name = "Faker",
-      MainRole = Role.Mid
+      MainRole = Role.Middle
     };
     
     var useCase = CreateUseCase();
@@ -45,7 +45,7 @@ public class CreatePlayerTests {
     
     Assert.NotNull(createdPlayer);
     Assert.That(createdPlayer.Name, Is.EqualTo("Faker"));
-    Assert.That(createdPlayer.MainRole, Is.EqualTo(Role.Mid));
+    Assert.That(createdPlayer.MainRole, Is.EqualTo(Role.Middle));
   }
 
 }
