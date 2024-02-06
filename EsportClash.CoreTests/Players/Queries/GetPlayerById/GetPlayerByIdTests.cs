@@ -1,9 +1,9 @@
 using EsportClash.Core.Players.Model;
-using EsportClash.Core.Players.UseCases.GetPlayerById;
+using EsportClash.Core.Players.Queries.GetPlayerById;
 using EsportClash.Core.Shared;
 using EsportClash.Persistence.InMemory.Players;
 
-namespace EsportClash.CoreTests.Players.UseCases.GetPlayerById;
+namespace EsportClash.CoreTests.Players.Queries.GetPlayerById;
 
 public class GetPlayerByIdTests {
   private readonly Player _faker = new Player {
@@ -26,12 +26,12 @@ public class GetPlayerByIdTests {
 
   [Test]
   public async Task HappyPath_ShouldGetPlayer() {
-    var inputDto = new GetPlayerByIdCommand {
+    var inputDto = new GetPlayerByIdQuery {
       Id = "1"
     };
     
     var useCase = CreateUseCase();
-    var result = await useCase.Execute(inputDto);
+    var result = await useCase.Handle(inputDto, new CancellationToken());
 
     Assert.NotNull(result);
     Assert.That(result.Id, Is.EqualTo("1"));
@@ -41,12 +41,12 @@ public class GetPlayerByIdTests {
   
   [Test]
   public async Task WhenNotFound_ShouldThrowNotFoundException() {
-    var inputDto = new GetPlayerByIdCommand {
+    var inputDto = new GetPlayerByIdQuery {
       Id = "2"
     };
     
     var useCase = CreateUseCase();
-    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Execute(inputDto));
+    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Handle(inputDto, new CancellationToken()));
     Assert.That(exception!.Message, Is.EqualTo("Player (2) was not found"));
   }
 }

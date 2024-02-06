@@ -1,9 +1,9 @@
 using EsportClash.Core.Players.Model;
-using EsportClash.Core.Players.UseCases.DeletePlayer;
+using EsportClash.Core.Players.Commands.DeletePlayer;
 using EsportClash.Core.Shared;
 using EsportClash.Persistence.InMemory.Players;
 
-namespace EsportClash.CoreTests.Players.UseCases.DeletePlayer;
+namespace EsportClash.CoreTests.Players.Commands.DeletePlayer;
 
 public class DeletePlayerTests {
   private readonly Player _faker = new Player {
@@ -20,8 +20,8 @@ public class DeletePlayerTests {
     await _playerRepository.CreateAsync(_faker);
   }
 
-  private DeletePlayerUseCase CreateUseCase() {
-    return new DeletePlayerUseCase(_playerRepository);
+  private DeletePlayerCommandHandler CreateUseCase() {
+    return new DeletePlayerCommandHandler(_playerRepository);
   }
   
   [Test]
@@ -31,7 +31,7 @@ public class DeletePlayerTests {
     };
     
     var useCase = CreateUseCase();
-    await useCase.Execute(command);
+    await useCase.Handle(command, new CancellationToken());
 
     var player = await _playerRepository.FindByIdAsync(_faker.Id);
     Assert.That(player, Is.Null);
@@ -44,7 +44,7 @@ public class DeletePlayerTests {
     };
     
     var useCase = CreateUseCase();
-    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Execute(command));
+    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Handle(command, new CancellationToken()));
     Assert.That(exception!.Message, Is.EqualTo("Player (random-id) was not found"));
   }
 }

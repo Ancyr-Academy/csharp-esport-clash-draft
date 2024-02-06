@@ -1,10 +1,10 @@
 using EsportClash.Core.Players.Model;
-using EsportClash.Core.Players.UseCases.GetAllPlayers;
-using EsportClash.Core.Players.UseCases.GetPlayerById;
+using EsportClash.Core.Players.Queries.GetAllPlayers;
+using EsportClash.Core.Players.Queries.GetPlayerById;
 using EsportClash.Core.Shared;
 using EsportClash.Persistence.InMemory.Players;
 
-namespace EsportClash.CoreTests.Players.UseCases.GetAllPlayers;
+namespace EsportClash.CoreTests.Players.Queries.GetAllPlayers;
 
 public class GetAllPlayerTests {
   private readonly Player _faker = new Player {
@@ -27,10 +27,10 @@ public class GetAllPlayerTests {
 
   [Test]
   public async Task HappyPath_ShouldGetAllPlayers() {
-    var inputDto = new GetAllPlayersCommand();
+    var inputDto = new GetAllPlayersQuery();
     
     var useCase = CreateUseCase();
-    var result = await useCase.Execute(inputDto);
+    var result = await useCase.Handle(inputDto, new CancellationToken());
 
     Assert.That(result.Count, Is.EqualTo(1));
     Assert.That(result[0].Id, Is.EqualTo("1"));

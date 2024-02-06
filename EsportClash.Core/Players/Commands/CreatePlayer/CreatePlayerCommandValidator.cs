@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace EsportClash.Core.Players.UseCases.CreatePlayer;
+namespace EsportClash.Core.Players.Commands.CreatePlayer;
 
 public class CreatePlayerCommandValidator : AbstractValidator<CreatePlayerCommand> {
   public CreatePlayerCommandValidator() {

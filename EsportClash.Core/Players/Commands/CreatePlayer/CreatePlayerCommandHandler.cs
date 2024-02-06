@@ -1,19 +1,21 @@
 using EsportClash.Core.Players.Ports;
 using EsportClash.Core.Shared;
 using EsportClash.Core.Shared.Id;
+using MediatR;
 
-namespace EsportClash.Core.Players.UseCases.CreatePlayer;
+namespace EsportClash.Core.Players.Commands.CreatePlayer;
 
-public class CreatePlayerUseCase : IUseCase<CreatePlayerCommand, IdResponse> {
+public class CreatePlayerCommandHandler : IRequestHandler<CreatePlayerCommand, IdResponse> {
   private readonly IIdProvider _idProvider;
   private readonly IPlayerRepository _playerRepository;
   
-  public CreatePlayerUseCase(IIdProvider idProvider, IPlayerRepository playerRepository) {
+  public CreatePlayerCommandHandler(IIdProvider idProvider, IPlayerRepository playerRepository) {
     _idProvider = idProvider;
     _playerRepository = playerRepository;
   }
   
-  public async Task<IdResponse> Execute(CreatePlayerCommand request) {
+  
+  public async Task<IdResponse> Handle(CreatePlayerCommand request, CancellationToken cancellationToken) {
     var validator = new CreatePlayerCommandValidator();
     var validationResult = await validator.ValidateAsync(request);
     

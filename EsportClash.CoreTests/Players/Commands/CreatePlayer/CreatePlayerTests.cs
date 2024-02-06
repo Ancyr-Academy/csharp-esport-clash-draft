@@ -1,9 +1,9 @@
 using EsportClash.Core.Players.Model;
-using EsportClash.Core.Players.UseCases.CreatePlayer;
+using EsportClash.Core.Players.Commands.CreatePlayer;
 using EsportClash.Core.Shared.Id;
 using EsportClash.Persistence.InMemory.Players;
 
-namespace EsportClash.CoreTests.Players.UseCases.CreatePlayer;
+namespace EsportClash.CoreTests.Players.Commands.CreatePlayer;
 
 public class CreatePlayerTests {
   private readonly FixedIdProvider _idProvider = new FixedIdProvider();
@@ -14,8 +14,8 @@ public class CreatePlayerTests {
     _playerRepository.Clear();
   }
 
-  private CreatePlayerUseCase CreateUseCase() {
-    return new CreatePlayerUseCase(_idProvider, _playerRepository);
+  private CreatePlayerCommandHandler CreateUseCase() {
+    return new CreatePlayerCommandHandler(_idProvider, _playerRepository);
   }
 
   [Test]
@@ -26,7 +26,7 @@ public class CreatePlayerTests {
     };
     
     var useCase = CreateUseCase();
-    var result = await useCase.Execute(inputDto);
+    var result = await useCase.Handle(inputDto, new CancellationToken());
 
     Assert.That(result.Id, Is.EqualTo(FixedIdProvider.Id));  
   }
@@ -39,7 +39,7 @@ public class CreatePlayerTests {
     };
     
     var useCase = CreateUseCase();
-    var result = await useCase.Execute(inputDto);
+    var result = await useCase.Handle(inputDto, new CancellationToken());
 
     var createdPlayer = await _playerRepository.FindByIdAsync(result.Id);
     
