@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using EsportClash.Persistence.SQL;
 using EsportClashAPI;
+using EsportClashAPI.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddUseCases();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {

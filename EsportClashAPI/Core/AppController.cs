@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace EsportClashAPI.Controllers;
+namespace EsportClashAPI.Core;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/app")]
 public class AppController : ControllerBase {
   
   public AppController() { }
 
-  [HttpGet(Name = "GetHome")]
+  [HttpGet]
   public object Get() {
     return new {
-      Status = "Ok"
+      Name = "EsportClashAPI",
     };
   }
 }
