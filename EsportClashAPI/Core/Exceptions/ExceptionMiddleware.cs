@@ -1,7 +1,7 @@
 using System.Net;
 using EsportClash.Core.Shared;
 
-namespace EsportClashAPI.Core;
+namespace EsportClashAPI.Core.Exceptions;
 
 public class ExceptionMiddleware {
   private readonly RequestDelegate _next;

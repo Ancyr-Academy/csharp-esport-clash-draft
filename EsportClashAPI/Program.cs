@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using EsportClash.Persistence.SQL;
 using EsportClashAPI;
-using EsportClashAPI.Core;
+using EsportClashAPI.Core.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 

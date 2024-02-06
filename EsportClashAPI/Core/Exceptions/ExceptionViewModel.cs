@@ -1,4 +1,4 @@
-namespace EsportClashAPI.Core;
+namespace EsportClashAPI.Core.Exceptions;
 
 public class ExceptionViewModel {
   public string Message { get; set; }
