@@ -21,7 +21,7 @@ public class GetAllPlayerTests {
     await _playerRepository.CreateAsync(_faker);
   }
 
-  private GetAllPlayersUseCase CreateUseCase() {
+  private GetAllPlayersUseCase CreateQueryHandler() {
     return new GetAllPlayersUseCase(_playerRepository);
   }
 
@@ -29,8 +29,8 @@ public class GetAllPlayerTests {
   public async Task HappyPath_ShouldGetAllPlayers() {
     var inputDto = new GetAllPlayersQuery();
     
-    var useCase = CreateUseCase();
-    var result = await useCase.Handle(inputDto, new CancellationToken());
+    var useCase = CreateQueryHandler();
+    var result = await useCase.Handle(inputDto, CancellationToken.None);
 
     Assert.That(result.Count, Is.EqualTo(1));
     Assert.That(result[0].Id, Is.EqualTo("1"));

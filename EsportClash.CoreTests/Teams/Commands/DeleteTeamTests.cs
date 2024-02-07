@@ -15,7 +15,7 @@ public class DeleteTeamTests {
     
   private readonly InMemoryTeamRepository _teamRepository = new();
   
-  public DeleteTeamCommandHandler createCommandHandler() {
+  public DeleteTeamCommandHandler CreateCommandHandler() {
     return new DeleteTeamCommandHandler(_teamRepository);
   }
 
@@ -32,8 +32,8 @@ public class DeleteTeamTests {
       Id = _team.Id
     };
 
-    var handler = createCommandHandler();
-    await handler.Handle(command, new CancellationToken());
+    var handler = CreateCommandHandler();
+    await handler.Handle(command, CancellationToken.None);
     
     var team = await _teamRepository.FindByIdAsync(_team.Id);
     Assert.That(team, Is.Null);
@@ -45,8 +45,8 @@ public class DeleteTeamTests {
       Id = "random-id"
     };
 
-    var handler = createCommandHandler();
-    var exception = Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(command, new CancellationToken()));
+    var handler = CreateCommandHandler();
+    var exception = Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(command, CancellationToken.None));
     Assert.That(exception!.Message, Is.EqualTo("Team (random-id) was not found"));
   } 
 }

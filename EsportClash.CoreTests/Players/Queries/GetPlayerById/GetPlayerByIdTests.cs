@@ -20,7 +20,7 @@ public class GetPlayerByIdTests {
     await _playerRepository.CreateAsync(_faker);
   }
 
-  private GetPlayerByIdUseCase CreateUseCase() {
+  private GetPlayerByIdUseCase CreateQueryHandler() {
     return new GetPlayerByIdUseCase(_playerRepository);
   }
 
@@ -30,8 +30,8 @@ public class GetPlayerByIdTests {
       Id = "1"
     };
     
-    var useCase = CreateUseCase();
-    var result = await useCase.Handle(inputDto, new CancellationToken());
+    var useCase = CreateQueryHandler();
+    var result = await useCase.Handle(inputDto, CancellationToken.None);
 
     Assert.NotNull(result);
     Assert.That(result.Id, Is.EqualTo("1"));
@@ -40,13 +40,13 @@ public class GetPlayerByIdTests {
   }
   
   [Test]
-  public async Task WhenNotFound_ShouldThrowNotFoundException() {
+  public void WhenNotFound_ShouldThrowNotFoundException() {
     var inputDto = new GetPlayerByIdQuery {
       Id = "2"
     };
     
-    var useCase = CreateUseCase();
-    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Handle(inputDto, new CancellationToken()));
+    var useCase = CreateQueryHandler();
+    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Handle(inputDto, CancellationToken.None));
     Assert.That(exception!.Message, Is.EqualTo("Player (2) was not found"));
   }
 }

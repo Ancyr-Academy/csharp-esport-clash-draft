@@ -14,7 +14,7 @@ public class CreatePlayerTests {
     _playerRepository.Clear();
   }
 
-  private CreatePlayerCommandHandler CreateUseCase() {
+  private CreatePlayerCommandHandler CreateCommandHandler() {
     return new CreatePlayerCommandHandler(_idProvider, _playerRepository);
   }
 
@@ -25,8 +25,8 @@ public class CreatePlayerTests {
       MainRole = Role.Middle
     };
     
-    var useCase = CreateUseCase();
-    var result = await useCase.Handle(inputDto, new CancellationToken());
+    var useCase = CreateCommandHandler();
+    var result = await useCase.Handle(inputDto, CancellationToken.None);
 
     Assert.That(result.Id, Is.EqualTo(FixedIdProvider.Id));  
   }
@@ -38,8 +38,8 @@ public class CreatePlayerTests {
       MainRole = Role.Middle
     };
     
-    var useCase = CreateUseCase();
-    var result = await useCase.Handle(inputDto, new CancellationToken());
+    var useCase = CreateCommandHandler();
+    var result = await useCase.Handle(inputDto, CancellationToken.None);
 
     var createdPlayer = await _playerRepository.FindByIdAsync(result.Id);
     

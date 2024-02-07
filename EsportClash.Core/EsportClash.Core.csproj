@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <Folder Include="Players\Queries\" />
+      <Folder Include="Teams\ViewModel\" />
     </ItemGroup>
 
 </Project>

@@ -20,7 +20,7 @@ public class DeletePlayerTests {
     await _playerRepository.CreateAsync(_faker);
   }
 
-  private DeletePlayerCommandHandler CreateUseCase() {
+  private DeletePlayerCommandHandler CreateCommandHandler() {
     return new DeletePlayerCommandHandler(_playerRepository);
   }
   
@@ -30,21 +30,21 @@ public class DeletePlayerTests {
       Id = _faker.Id
     };
     
-    var useCase = CreateUseCase();
-    await useCase.Handle(command, new CancellationToken());
+    var useCase = CreateCommandHandler();
+    await useCase.Handle(command, CancellationToken.None);
 
     var player = await _playerRepository.FindByIdAsync(_faker.Id);
     Assert.That(player, Is.Null);
   }
   
   [Test]
-  public async Task WhenTheUserDoesNotExist_ShouldFail() {
+  public void WhenTheUserDoesNotExist_ShouldFail() {
     var command = new DeletePlayerCommand {
       Id = "random-id"
     };
     
-    var useCase = CreateUseCase();
-    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Handle(command, new CancellationToken()));
+    var useCase = CreateCommandHandler();
+    var exception = Assert.ThrowsAsync<NotFoundException>(async () => await useCase.Handle(command, CancellationToken.None));
     Assert.That(exception!.Message, Is.EqualTo("Player (random-id) was not found"));
   }
 }

@@ -57,9 +57,10 @@ public class AddPlayerToTeamTests {
     };
 
     var handler = CreateCommandHandler();
-    await handler.Handle(command, new CancellationToken());
+    await handler.Handle(command, CancellationToken.None);
     
-    Assert.That(_team.HasPlayer(_player), Is.True);
+    var team = await _teamRepository.FindByIdAsync(_team.Id);
+    Assert.That(team.HasPlayer(_player), Is.True);
   }  
   
   [Test]
@@ -72,7 +73,7 @@ public class AddPlayerToTeamTests {
 
     var handler = CreateCommandHandler();
     
-    var exception = Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(command, new CancellationToken()));
+    var exception = Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(command, CancellationToken.None));
     Assert.That(exception!.Message, Is.EqualTo("Player (random-id) was not found"));
   }
   
@@ -86,7 +87,7 @@ public class AddPlayerToTeamTests {
 
     var handler = CreateCommandHandler();
     
-    var exception = Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(command, new CancellationToken()));
+    var exception = Assert.ThrowsAsync<NotFoundException>(() => handler.Handle(command, CancellationToken.None));
     Assert.That(exception!.Message, Is.EqualTo("Team (random-id) was not found"));
   }
 }

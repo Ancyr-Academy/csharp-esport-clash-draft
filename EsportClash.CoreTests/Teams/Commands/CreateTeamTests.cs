@@ -8,7 +8,7 @@ public class CreateTeamTests {
   private readonly FixedIdProvider _idProvider = new();
   private readonly InMemoryTeamRepository _teamRepository = new();
   
-  public CreateTeamCommandHandler createCommandHandler() {
+  public CreateTeamCommandHandler CreateCommandHandler() {
     return new CreateTeamCommandHandler(_idProvider, _teamRepository);
   }
 
@@ -18,8 +18,8 @@ public class CreateTeamTests {
       Name = "Team"
     };
 
-    var handler = createCommandHandler();
-    var result = await handler.Handle(command, new CancellationToken());
+    var handler = CreateCommandHandler();
+    var result = await handler.Handle(command, CancellationToken.None);
     
     Assert.That(result.Id, Is.EqualTo(_idProvider.NewId()));
   } 
@@ -30,8 +30,8 @@ public class CreateTeamTests {
       Name = "Team"
     };
 
-    var handler = createCommandHandler();
-    var result = await handler.Handle(command, new CancellationToken());
+    var handler = CreateCommandHandler();
+    var result = await handler.Handle(command, CancellationToken.None);
 
     var createdTeam = await _teamRepository.FindByIdAsync(result.Id);
     
