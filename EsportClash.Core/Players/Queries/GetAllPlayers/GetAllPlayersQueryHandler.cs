@@ -5,15 +5,19 @@ using MediatR;
 
 namespace EsportClash.Core.Players.Queries.GetAllPlayers;
 
-public class GetAllPlayersUseCase : IRequestHandler<GetAllPlayersQuery, List<PlayerViewModel>> {
+public class GetAllPlayersQueryHandler : IRequestHandler<GetAllPlayersQuery, List<PlayerViewModel>> {
   private readonly IPlayerRepository _playerRepository;
   
-  public GetAllPlayersUseCase(IPlayerRepository playerRepository) {
+  public GetAllPlayersQueryHandler(IPlayerRepository playerRepository) {
     _playerRepository = playerRepository;
   }
   
   public async Task<List<PlayerViewModel>> Handle(GetAllPlayersQuery request, CancellationToken token) {
     var players = await _playerRepository.FindAllAsync();
-    return players.Select(player => new PlayerViewModel(player)).ToList();
+    return players.Select(player => new PlayerViewModel {
+      Id = player.Id,
+      Name = player.Name,
+      Role = player.MainRole.ToString()
+    }).ToList();
   }
 }

@@ -3,7 +3,7 @@ using EsportClash.Core.Players.Queries.GetPlayerById;
 using EsportClash.Core.Shared;
 using EsportClash.Persistence.InMemory.Players;
 
-namespace EsportClash.CoreTests.Players.Queries.GetPlayerById;
+namespace EsportClash.CoreTests.Players.Queries;
 
 public class GetPlayerByIdTests {
   private readonly Player _faker = new Player {
@@ -20,8 +20,8 @@ public class GetPlayerByIdTests {
     await _playerRepository.CreateAsync(_faker);
   }
 
-  private GetPlayerByIdUseCase CreateQueryHandler() {
-    return new GetPlayerByIdUseCase(_playerRepository);
+  private GetPlayerByIdQueryHandler CreateQueryHandler() {
+    return new GetPlayerByIdQueryHandler(_playerRepository);
   }
 
   [Test]

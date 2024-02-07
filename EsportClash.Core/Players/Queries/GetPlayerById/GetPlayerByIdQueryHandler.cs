@@ -5,10 +5,10 @@ using MediatR;
 
 namespace EsportClash.Core.Players.Queries.GetPlayerById;
 
-public class GetPlayerByIdUseCase : IRequestHandler<GetPlayerByIdQuery, PlayerViewModel> {
+public class GetPlayerByIdQueryHandler : IRequestHandler<GetPlayerByIdQuery, PlayerViewModel> {
   private readonly IPlayerRepository _playerRepository;
   
-  public GetPlayerByIdUseCase(IPlayerRepository playerRepository) {
+  public GetPlayerByIdQueryHandler(IPlayerRepository playerRepository) {
     _playerRepository = playerRepository;
   }
   
@@ -18,6 +18,10 @@ public class GetPlayerByIdUseCase : IRequestHandler<GetPlayerByIdQuery, PlayerVi
       throw new NotFoundException("Player", request.Id);
     }
 
-    return new PlayerViewModel(player);
+    return new PlayerViewModel {
+      Id = player.Id,
+      Name = player.Name,
+      Role = player.MainRole.ToString()
+    };
   }
 }

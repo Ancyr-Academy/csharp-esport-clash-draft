@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <PackageReference Include="MediatR" Version="12.2.0" />
+      <PackageReference Include="System.Interactive.Async" Version="6.0.1" />
     </ItemGroup>
 
 </Project>

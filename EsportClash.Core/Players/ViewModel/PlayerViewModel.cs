@@ -5,9 +5,5 @@ public class PlayerViewModel {
   public string Name { get; set; }
   public string Role { get; set; }
   
-  public PlayerViewModel(Model.Player player) {
-    Id = player.Id;
-    Name = player.Name;
-    Role = player.MainRole.ToString();
-  }
+ 
 }
