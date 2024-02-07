@@ -13,8 +13,7 @@ namespace EsportClashAPI.Players;
 [Route("/players")]
 public class PlayersController : ControllerBase {
   private readonly IMediator _mediator;
-
-
+  
   public PlayersController(IMediator mediator) {
     _mediator = mediator;
   }
