@@ -3,18 +3,18 @@ using EsportClash.Persistence.SQL;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EsportClash.APITests;
 
-public class WebTestsFixture : WebApplicationFactory<Program> {
-  private readonly DatabaseSetup _databaseSetup = new DatabaseSetup();
-  
+public class WebTestsFixture : WebApplicationFactory<Program>, IDisposable {
+  private readonly DatabaseSetup _databaseSetup = new();
+
   protected override void ConfigureWebHost(IWebHostBuilder builder) {
     builder.UseEnvironment("Testing");
     builder.ConfigureServices(services => {
-      services.Remove(services.SingleOrDefault(service => typeof(DbContextOptions<EsportDatabaseContext>) == service.ServiceType));
+      services.Remove(services.SingleOrDefault(service =>
+        typeof(DbContextOptions<EsportDatabaseContext>) == service.ServiceType));
       services.Remove(services.SingleOrDefault(service => typeof(DbConnection) == service.ServiceType));
       services.AddDbContext<EsportDatabaseContext>(options => {
         options.UseNpgsql(_databaseSetup.ConnectionString());
@@ -27,6 +27,5 @@ public class WebTestsFixture : WebApplicationFactory<Program> {
         db.Database.Migrate();
       }
     });
-    
   }
 }

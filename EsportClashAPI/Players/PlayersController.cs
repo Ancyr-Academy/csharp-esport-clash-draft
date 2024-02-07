@@ -23,19 +23,19 @@ public class PlayersController : ControllerBase {
   public Task<List<PlayerViewModel>> GetAllPlayers() {
     return _mediator.Send(new GetAllPlayersQuery());
   }
-  
+
   [HttpGet("{id}")]
   public async Task<ActionResult<PlayerViewModel>> Get(string id) {
-    var player = await _mediator.Send(new GetPlayerByIdQuery() { Id = id });
+    var player = await _mediator.Send(new GetPlayerByIdQuery { Id = id });
     return Ok(player);
   }
-  
+
   [HttpPost]
   public async Task<ActionResult<IdResponse>> Create([FromBody] CreatePlayerCommand command) {
     var response = await _mediator.Send(command);
     return CreatedAtAction(nameof(Get), new { id = response.Id }, response);
   }
-  
+
   [HttpDelete("{id}")]
   public async Task<ActionResult> Delete(string id) {
     await _mediator.Send(new DeletePlayerCommand { Id = id });
