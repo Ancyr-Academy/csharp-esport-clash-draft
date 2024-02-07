@@ -6,7 +6,7 @@ using EsportClash.Persistence.SQL.Modules.Teams;
 namespace EsportClash.Persistence.SQL.Tests;
 
 public class SmokeTests {
-  private readonly DatabaseSetup _db = new DatabaseSetup();
+  private readonly DatabaseSetup _db = new();
   private SqlPlayerRepository _playerRepository;
   private SqlTeamRepository _teamRepository;
 
@@ -23,7 +23,7 @@ public class SmokeTests {
   }
 
   [Test]
-  public async Task PlayerTests() {
+  public async Task ShouldCreatePlayer() {
     var player = new Player {
       Id = "faker",
       Name = "Faker",
@@ -34,10 +34,13 @@ public class SmokeTests {
 
     var fetchedPlayer = await _playerRepository.FindByIdAsync(player.Id);
     Assert.NotNull(fetchedPlayer);
+    Assert.That(fetchedPlayer.Id, Is.EqualTo(player.Id));
+    Assert.That(fetchedPlayer.Name, Is.EqualTo(player.Name));
+    Assert.That(fetchedPlayer.MainRole, Is.EqualTo(player.MainRole));
   }
   
   [Test]
-  public async Task TeamTests() {
+  public async Task ShouldCreateTeam() {
     var player = new Player {
       Id = "faker",
       Name = "Faker",
