@@ -6,7 +6,7 @@ namespace EsportClash.Persistence.SQL.Modules.Teams;
 public class SqlTeamRepository : SqlGenericRepository<Team>, ITeamRepository {
   public SqlTeamRepository(EsportDatabaseContext context): base(context) {}
   
-  public async Task Clear() {
+  public override async Task ClearAsync() {
     _context.Teams.RemoveRange(_context.Teams);
     await _context.SaveChangesAsync();
   }

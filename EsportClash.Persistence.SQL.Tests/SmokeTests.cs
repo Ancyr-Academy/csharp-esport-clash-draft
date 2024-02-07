@@ -18,8 +18,8 @@ public class SmokeTests {
 
   [SetUp]
   public void BeforeEach() {
-    _playerRepository.Clear().Wait();
-    _teamRepository.Clear().Wait();
+    _playerRepository.ClearAsync().Wait();
+    _teamRepository.ClearAsync().Wait();
   }
 
   [Test]

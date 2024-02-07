@@ -6,7 +6,7 @@ namespace EsportClash.Persistence.SQL.Modules.Players;
 public class SqlPlayerRepository : SqlGenericRepository<Player>, IPlayerRepository {
   public SqlPlayerRepository(EsportDatabaseContext context): base(context) {}
 
-  public async Task Clear() {
+  public override async Task ClearAsync() {
     _context.Players.RemoveRange(_context.Players);
     await _context.SaveChangesAsync();
   }

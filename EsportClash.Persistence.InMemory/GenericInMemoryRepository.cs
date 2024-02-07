@@ -28,8 +28,12 @@ public class GenericInMemoryRepository<T> : IGenericRepository<T> where T : Base
   public async Task DeleteAsync(T entity) {
     this._database.Remove(entity.Id);
   }
-
+  
   public void Clear() {
     _database.Clear();
+  }
+  
+  public async Task ClearAsync() {
+    Clear();
   }
 }

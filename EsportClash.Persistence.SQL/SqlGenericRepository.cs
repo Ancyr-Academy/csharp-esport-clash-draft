@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EsportClash.Persistence.SQL;
 
-public class SqlGenericRepository<T> : IGenericRepository<T> where T : BaseEntity {
+public abstract class SqlGenericRepository<T> : IGenericRepository<T> where T : BaseEntity {
   protected readonly EsportDatabaseContext _context;
   
   public SqlGenericRepository(EsportDatabaseContext context) {
@@ -31,5 +31,9 @@ public class SqlGenericRepository<T> : IGenericRepository<T> where T : BaseEntit
   public async Task DeleteAsync(T entity) {
     _context.Remove(entity);
     await _context.SaveChangesAsync();
+  }
+
+  public virtual Task ClearAsync() {
+    throw new NotImplementedException();
   }
 }
