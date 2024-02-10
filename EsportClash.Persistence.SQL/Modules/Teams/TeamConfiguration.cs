@@ -12,7 +12,5 @@ public class TeamConfiguration : IEntityTypeConfiguration<Team> {
       .WithOne(q => q.Team)
       .HasForeignKey(q => q.TeamId)
       .IsRequired(false);
-    
-    
   }
 }
