@@ -7,13 +7,13 @@ using EsportClash.Core.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EsportClashAPI.Players;
+namespace EsportClashAPI.Modules.Players;
 
 [ApiController]
 [Route("/players")]
 public class PlayersController : ControllerBase {
   private readonly IMediator _mediator;
-  
+
   public PlayersController(IMediator mediator) {
     _mediator = mediator;
   }

@@ -9,7 +9,7 @@ using EsportClash.Core.Teams.ViewModel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EsportClashAPI.Teams;
+namespace EsportClashAPI.Modules.Teams;
 
 [ApiController]
 [Route("/teams")]
@@ -26,12 +26,12 @@ public class TeamsController : ControllerBase {
   }
 
   [HttpGet("{id}")]
-  public Task<TeamViewModel> Get(string id) {
+  public Task<TeamViewModel> GetTeam(string id) {
     return _mediator.Send(new GetTeamByIdQuery { Id = id });
   }
 
   [HttpPost]
-  public Task<IdResponse> Create([FromBody] CreateTeamCommand command) {
+  public Task<IdResponse> CreateTeam([FromBody] CreateTeamCommand command) {
     return _mediator.Send(command);
   }
 
@@ -40,12 +40,12 @@ public class TeamsController : ControllerBase {
     return _mediator.Send(new DeleteTeamCommand { Id = id });
   }
 
-  [HttpPost]
+  [HttpPost("add-player-to-team")]
   public Task AddPlayerToTeam([FromBody] AddPlayerToTeamCommand command) {
     return _mediator.Send(command);
   }
 
-  [HttpDelete]
+  [HttpDelete("remove-player-from-team")]
   public Task RemovePlayerFromTeam([FromBody] RemovePlayerFromTeamCommand command) {
     return _mediator.Send(command);
   }

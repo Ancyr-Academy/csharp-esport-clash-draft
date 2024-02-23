@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.Persistence.SQL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.APITests", "EsportClash.APITests\EsportClash.APITests.csproj", "{B85200F3-2B8F-4C55-B943-ADFFBF5DB84D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsportClash.Identity", "EsportClash.Identity\EsportClash.Identity.csproj", "{DFA8D55C-C0CB-411E-ADDA-6608680D6901}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{B85200F3-2B8F-4C55-B943-ADFFBF5DB84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B85200F3-2B8F-4C55-B943-ADFFBF5DB84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B85200F3-2B8F-4C55-B943-ADFFBF5DB84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA8D55C-C0CB-411E-ADDA-6608680D6901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA8D55C-C0CB-411E-ADDA-6608680D6901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA8D55C-C0CB-411E-ADDA-6608680D6901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA8D55C-C0CB-411E-ADDA-6608680D6901}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

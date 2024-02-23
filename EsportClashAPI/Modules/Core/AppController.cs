@@ -1,17 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace EsportClashAPI.Core;
+namespace EsportClashAPI.Modules.Core;
 
 [ApiController]
 [Route("/app")]
 public class AppController : ControllerBase {
-  
-  public AppController() { }
-
   [HttpGet]
   public object Get() {
     return new {
-      Name = "EsportClashAPI",
+      Name = "EsportClashAPI"
     };
   }
 }

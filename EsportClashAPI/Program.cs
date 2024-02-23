@@ -1,7 +1,8 @@
 using System.Text.Json.Serialization;
+using EsportClash.Identity;
 using EsportClash.Persistence.SQL;
 using EsportClashAPI;
-using EsportClashAPI.Core.Exceptions;
+using EsportClashAPI.Modules.Core.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddUseCases();
 
 var app = builder.Build();
@@ -30,6 +32,7 @@ if (app.Environment.IsDevelopment()) {
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
