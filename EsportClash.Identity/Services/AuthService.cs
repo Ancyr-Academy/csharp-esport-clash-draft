@@ -21,7 +21,7 @@ public class AuthService {
     _signInManager = signInManager;
   }
 
-  public async Task<AuthResponse> Login(AuthRequest request) {
+  public async Task<LoginResponse> Login(LoginRequest request) {
     var user = await _userManager.FindByEmailAsync(request.Email);
     if (user == null) throw new NotFoundException($"User with {request.Email} not found.", request.Email);
 
@@ -30,7 +30,7 @@ public class AuthService {
 
     var jwtSecurityToken = await GenerateToken(user);
 
-    var response = new AuthResponse {
+    var response = new LoginResponse {
       Id = user.Id,
       Email = user.Email,
       UserName = user.UserName,
@@ -40,7 +40,7 @@ public class AuthService {
     return response;
   }
 
-  public async Task Register(RegisterRequest request) {
+  public async Task<RegisterResponse> Register(RegisterRequest request) {
     var user = new AppUser {
       Email = request.Email,
       FirstName = request.FirstName,
@@ -58,6 +58,10 @@ public class AuthService {
     }
 
     await _userManager.AddToRoleAsync(user, "User");
+
+    return new RegisterResponse {
+      UserId = user.Id
+    };
   }
 
   private async Task<JwtSecurityToken> GenerateToken(AppUser user) {

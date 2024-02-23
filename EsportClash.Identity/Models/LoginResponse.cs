@@ -1,6 +1,6 @@
 namespace EsportClash.Identity.Models;
 
-public class AuthResponse {
+public class LoginResponse {
   public string Id { get; set; }
 
   public string Email { get; set; }
